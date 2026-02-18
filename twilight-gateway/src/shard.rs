@@ -754,6 +754,7 @@ impl<Q: Queue> Shard<Q> {
 
         match OpCode::from(raw_opcode) {
             Some(OpCode::Dispatch) => {
+                tracing::info!("parsing dispatch event...");
                 let event_type = maybe_event_type.ok_or_else(|| ReceiveMessageError {
                     kind: ReceiveMessageErrorType::Deserializing {
                         event: event.to_owned(),
@@ -771,6 +772,7 @@ impl<Q: Queue> Shard<Q> {
                 match event_type.as_ref() {
                     "READY" => {
                         let event = Self::parse_event::<MinimalReady>(event)?;
+                        tracing::info!("[done] parsed dispatch event!");
 
                         self.resume_url = Some(event.data.resume_gateway_url);
                         self.session = Some(Session::new(sequence, event.data.session_id));
