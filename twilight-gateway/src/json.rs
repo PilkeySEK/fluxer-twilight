@@ -28,6 +28,7 @@ pub fn parse(
     wanted_event_types: EventTypeFlags,
 ) -> Result<Option<GatewayEvent>, ReceiveMessageError> {
     let Some(gateway_deserializer) = GatewayEventDeserializer::from_json(&event) else {
+        tracing::warn!("Occurred here");
         return Err(ReceiveMessageError {
             kind: ReceiveMessageErrorType::Deserializing { event },
             source: None,
