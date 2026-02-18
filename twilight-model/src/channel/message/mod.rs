@@ -174,6 +174,7 @@ pub struct Message {
     /// [`Role`]s mentioned in the message.
     ///
     /// [`Role`]: crate::guild::Role
+    #[serde(default)]
     pub mention_roles: Vec<Id<RoleMarker>>,
     /// Users mentioned in the message.
     #[serde(default)]
