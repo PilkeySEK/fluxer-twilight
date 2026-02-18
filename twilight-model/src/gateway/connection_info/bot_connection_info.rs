@@ -28,7 +28,7 @@ mod tests {
                 total: 1000,
             },
             shards: 3,
-            url: "wss://gateway.discord.gg".to_owned(),
+            url: "wss://gateway.fluxer.app".to_owned(),
         };
 
         serde_test::assert_tokens(
@@ -55,7 +55,7 @@ mod tests {
                 Token::Str("shards"),
                 Token::U32(3),
                 Token::Str("url"),
-                Token::Str("wss://gateway.discord.gg"),
+                Token::Str("wss://gateway.fluxer.app"),
                 Token::StructEnd,
             ],
         );

@@ -19,7 +19,7 @@ mod tests {
     #[test]
     fn connection_info() {
         let value = ConnectionInfo {
-            url: "wss://gateway.discord.gg".to_owned(),
+            url: "wss://gateway.fluxer.app".to_owned(),
         };
 
         serde_test::assert_tokens(
@@ -30,7 +30,7 @@ mod tests {
                     len: 1,
                 },
                 Token::Str("url"),
-                Token::Str("wss://gateway.discord.gg"),
+                Token::Str("wss://gateway.fluxer.app"),
                 Token::StructEnd,
             ],
         );

@@ -48,7 +48,7 @@ mod tests {
                 id: Id::new(100),
             },
             guilds,
-            resume_gateway_url: "wss://gateway.discord.gg".into(),
+            resume_gateway_url: "wss://gateway.fluxer.app".into(),
             session_id: "foo".to_owned(),
             shard: Some(ShardId::new(4, 7)),
             user: CurrentUser {
@@ -113,7 +113,7 @@ mod tests {
                 Token::StructEnd,
                 Token::SeqEnd,
                 Token::Str("resume_gateway_url"),
-                Token::Str("wss://gateway.discord.gg"),
+                Token::Str("wss://gateway.fluxer.app"),
                 Token::Str("session_id"),
                 Token::Str("foo"),
                 Token::Str("shard"),

@@ -51,7 +51,7 @@ use twilight_model::gateway::{
 };
 
 /// URL of the Discord gateway.
-const GATEWAY_URL: &str = "wss://gateway.discord.gg";
+const GATEWAY_URL: &str = "wss://gateway.fluxer.app";
 
 /// Query argument depending on enabled compression features.
 const COMPRESSION_FEATURES: &str = if cfg!(feature = "zstd") {
