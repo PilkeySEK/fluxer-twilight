@@ -42,7 +42,7 @@ use twilight_model::gateway::{
     CloseCode, CloseFrame, Intents, OpCode,
     event::GatewayEventDeserializer,
     payload::{
-        incoming::Hello,
+        incoming::{Hello, Ready},
         outgoing::{
             Heartbeat, Identify, Resume,
             identify::{IdentifyInfo, IdentifyProperties},
@@ -169,6 +169,7 @@ struct MinimalEvent<T> {
 ///
 /// [`Ready`]: twilight_model::gateway::payload::incoming::Ready
 #[derive(Deserialize)]
+#[expect(unused)]
 struct MinimalReady {
     /// Used for resuming connections.
     resume_gateway_url: Box<str>,
@@ -771,10 +772,10 @@ impl<Q: Queue> Shard<Q> {
 
                 match event_type.as_ref() {
                     "READY" => {
-                        let event = Self::parse_event::<MinimalReady>(event)?;
+                        let event = Self::parse_event::<Ready>(event)?;
                         tracing::info!("[done] parsed dispatch event!");
 
-                        self.resume_url = Some(event.data.resume_gateway_url);
+                        self.resume_url = Some(event.data.resume_gateway_url.into_boxed_str());
                         self.session = Some(Session::new(sequence, event.data.session_id));
                         self.state = ShardState::Active;
                     }
