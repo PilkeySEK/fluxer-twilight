@@ -176,6 +176,7 @@ pub struct Message {
     /// [`Role`]: crate::guild::Role
     pub mention_roles: Vec<Id<RoleMarker>>,
     /// Users mentioned in the message.
+    #[serde(default)]
     pub mentions: Vec<Mention>,
     /// The message associated with the [`MessageReference`]. This is a minimal subset
     /// of fields in a message (e.g. author is excluded.).
@@ -214,6 +215,7 @@ pub struct Message {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub thread: Option<Channel>,
     /// Whether the message was a TTS message.
+    #[serde(default)]
     pub tts: bool,
     /// ID of the webhook that generated the message.
     #[serde(skip_serializing_if = "Option::is_none")]

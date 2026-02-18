@@ -66,6 +66,8 @@ pub fn parse(
 
         #[cfg(not(feature = "simd-json"))]
         let mut json_deserializer = serde_json::Deserializer::from_str(&event);
+        
+        tracing::info!("Constructed deserializer");
 
         gateway_deserializer
             .deserialize(&mut json_deserializer)
