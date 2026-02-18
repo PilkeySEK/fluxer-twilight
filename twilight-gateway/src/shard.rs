@@ -799,7 +799,9 @@ impl<Q: Queue> Shard<Q> {
                 }
             }
             Some(OpCode::Hello) => {
+                tracing::info!("parsing hello event");
                 let event = Self::parse_event::<Hello>(event)?;
+                tracing::info!("[done] parsed hello event");
                 let heartbeat_interval = Duration::from_millis(event.data.heartbeat_interval);
                 // First heartbeat should have some jitter, see
                 // https://discord.com/developers/docs/topics/gateway#heartbeat-interval
