@@ -55,7 +55,7 @@ use self::error::{StartRecommendedError, StartRecommendedErrorType};
 use twilight_http::Client;
 
 /// Discord Gateway API version used by this crate.
-pub const API_VERSION: u8 = 10;
+pub const API_VERSION: u8 = 1;
 
 /// Creates an iterator of a single bucket's worth of shard identifiers.
 ///
