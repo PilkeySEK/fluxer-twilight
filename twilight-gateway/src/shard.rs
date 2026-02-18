@@ -22,15 +22,7 @@ use futures_core::Stream;
 use futures_sink::Sink;
 use serde::{Deserialize, Serialize, de::DeserializeOwned};
 use std::{
-    env::consts::OS,
-    error::Error,
-    fmt,
-    future::Future,
-    io,
-    pin::Pin,
-    str,
-    sync::Arc,
-    task::{Context, Poll, ready},
+    any::type_name, env::consts::OS, error::Error, fmt, future::Future, io, pin::Pin, str, sync::Arc, task::{Context, Poll, ready}
 };
 use tokio::{
     net::TcpStream,
@@ -42,7 +34,7 @@ use twilight_model::gateway::{
     CloseCode, CloseFrame, Intents, OpCode,
     event::GatewayEventDeserializer,
     payload::{
-        incoming::{Hello, Ready},
+        incoming::Hello,
         outgoing::{
             Heartbeat, Identify, Resume,
             identify::{IdentifyInfo, IdentifyProperties},
@@ -538,6 +530,7 @@ impl<Q> Shard<Q> {
     fn parse_event<T: DeserializeOwned>(
         json: &str,
     ) -> Result<MinimalEvent<T>, ReceiveMessageError> {
+        tracing::debug!("Parsing event: {}", type_name::<T>());
         json::from_str::<MinimalEvent<T>>(json).map_err(|source| ReceiveMessageError {
             kind: ReceiveMessageErrorType::Deserializing {
                 event: json.to_owned(),
